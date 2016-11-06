@@ -1,27 +1,43 @@
 #!/bin/bash
 clear
-echo -e "\n\t\t credits:MVN  "
-sleep 0.5
-clear
-geoiplookup 0.0.0.0
-if(( $? ))
+
+RED='\033[0;31m'
+BROW='\033[0;33m'
+GREEN='\033[1;32m'
+WHITE='\033[1;37m'
+LRED='\033[1;31m'
+LBLUE='\033[1;34m'
+BLUE='\033[0;34m'
+NM='\033[0;0m'
+LGRAY='\033[1;33m'
+echo "Few files need to be installed Enter your password: " 
+sudo echo -n " " 
+ping -c 1 google.com
+if(( !$? ))
 then
 clear
-echo " 'geoip' is required for FULL functionality ."
-sleep 0.3
-echo " installing geoip !"
-
+echo -e "${GREEN}Installing dependency Files !"
+sleep 0.4
+sudo ap-get install toilet
 sudo apt-get install geoip-bin
+else
+echo "${LRED}ERROR:CHECK YOUR NETWORK !"
+exit 0
 fi
 clear
-read -p "Enter url(www.*.com) or ip:" url
+toilet -f mono12 -F gay welcome
+echo -e "\t\tcredits: ${BLUE} Vamshinath M${WHITE}  "
+echo -e -n "Enter url(www.*.com) or ip:${GREEN}" 	
+read   url
+clear
 if(( 0 < $(echo $url | cut -c1 ) ))
 then
 ip=$url
 else
 purl=$( echo $url | cut -f2- -d"." )
-echo "Checking $purl"
 i=0
+
+clear
 ping -c 1 $purl 
 if(( $? ))
 then
@@ -31,7 +47,8 @@ then
 	ping -c 1 $mpurl
 	if(( $? ))
 	then
-		echo " $url is DOWN ! try after sometime"
+		clear
+		echo -e "${GREEN}$url${WHITE} is${LRED} DOWN !${LRED} try after sometime"
 		exit 0
 	fi
 fi
@@ -43,11 +60,11 @@ ip=$(ping -c 1 $mpurl | grep "^PING" | cut -f1 -d")" | cut -f2 -d"(" )
 fi
 fi
 clear
-echo -e "\n\tURL:$url\n"
-echo -e "\tIP:$ip\n"
+echo -e "\n\t${WHITE}URL:${GREEN}$url\n${WHITE}"
+echo -e "\tIP:${BLUE}$ip\n"
 
-echo -e "\tServer Loaction:$(geoiplookup $ip | head -1 | cut -f2 -d':' )\n"
-echo "Scanning Open Ports and OS in server:"
-AvaPorts=$(sudo nmap -O $ip | sed -e '1,5d' | head -n -2  )
-echo -e "\n$AvaPorts"
+echo -e "\t${WHITE}Server Location:${BROW}$(geoiplookup $ip | head -1 | cut -f2 -d':' )\n"
+echo -e "${LRED}Scanning Open Ports and OS in server:${NM}"
+AvaPorts=$(sudo nmap -O $ip | sed -e '1,5d' | head -n -2 )
+echo -e "\n${WHITE}$AvaPorts\n\n"
 
