@@ -10,6 +10,7 @@ LBLUE='\033[1;34m'
 BLUE='\033[0;34m'
 NM='\033[0;0m'
 LGRAY='\033[1;33m'
+
 echo "Few files need to be installed Enter your password: " 
 sudo echo -n " " 
 ping -c 1 google.com
@@ -17,7 +18,6 @@ if(( !$? ))
 then
 clear
 echo -e "${GREEN}Installing dependency Files !"
-sleep 0.4
 sudo apt-get install toilet
 sudo apt-get install geoip-bin
 else
@@ -67,4 +67,3 @@ echo -e "\t${WHITE}Server Location:${BROW}$(geoiplookup $ip | head -1 | cut -f2 
 echo -e "${LRED}Scanning Open Ports and OS in server:${NM}"
 AvaPorts=$(sudo nmap -O $ip | sed -e '1,5d' | head -n -2 )
 echo -e "\n${WHITE}$AvaPorts\n\n"
-
