@@ -18,7 +18,7 @@ then
 clear
 echo -e "${GREEN}Installing dependency Files !"
 sleep 0.4
-sudo ap-get install toilet
+sudo apt-get install toilet
 sudo apt-get install geoip-bin
 else
 echo "${LRED}ERROR:CHECK YOUR NETWORK !"
