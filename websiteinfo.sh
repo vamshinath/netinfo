@@ -11,7 +11,7 @@ BLUE='\033[0;34m'
 NM='\033[0;0m'
 LGRAY='\033[1;33m'
 
-echo "Few files need to be installed Enter your password: " 
+echo "Few files required to be installed , Enter your password: " 
 sudo echo -n " " 
 ping -c 1 google.com
 if(( !$? ))
@@ -20,6 +20,7 @@ clear
 echo -e "${GREEN}Installing dependency Files !"
 sudo apt-get install toilet
 sudo apt-get install geoip-bin
+sudo apt-get install nmap
 else
 echo "${LRED}ERROR:CHECK YOUR NETWORK !"
 exit 0
